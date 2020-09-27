@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/fishman/terraform-provider-danube/internal/provider"
+	"github.com/fishman/terraform-provider-danube/provider"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 

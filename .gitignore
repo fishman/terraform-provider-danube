@@ -1,3 +1,6 @@
+terraform-provider-danube
+.plugins/
+tfplan
 *.dll
 *.exe
 .DS_Store
