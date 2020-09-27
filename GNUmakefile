@@ -2,7 +2,13 @@ TEST?="./provider"
 ACCTEST?="./test/acceptance"
 GOFMT_FILES?=$$(find . -name '*.go' |grep -v vendor)
 WEBSITE_REPO=github.com/hashicorp/terraform-website
-PKG_NAME=provider
+PKG_NAME=danube
+HOSTNAME=registry.terraform.io
+NAMESPACE=fishman
+NAME=danube
+BINARY=terraform-provider-${NAME}
+VERSION=0.1
+OS_ARCH=linux_amd64
 
 default: build
 
@@ -20,6 +26,8 @@ install: build
 	@echo "==> Installing plugin to $(DESTINATION)"
 	@mkdir -p $(DESTINATION)
 	@cp ./terraform-provider-danube $(DESTINATION)
+	@mkdir -p ~/.terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}
+	@mv ${BINARY} ~/.terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}
 
 test: fmtcheck
 	go test $(TEST) -v || exit 1

@@ -12,6 +12,7 @@ import (
 	// "github.com/hashicorp/errwrap"
 )
 
+// Config  ...
 type Config struct {
 	Debug                 bool
 	User                  string
@@ -21,7 +22,8 @@ type Config struct {
 	InsecureSkipTLSVerify bool
 }
 
-func (c *Config) Client() (interface{}, error) {
+// Client  ...
+func (c *Config) Client() (*cloudapi.Client, error) {
 	// ctx := context.Background()
 
 	userAuth, err := auth.NewAuth("", "", c.APIKey)

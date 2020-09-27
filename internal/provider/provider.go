@@ -1,9 +1,26 @@
 package provider
 
 import (
+	"fmt"
+	"log"
+	"sync"
+
+	// "os"
+
+	"github.com/erigones/godanube/cloudapi"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+// Meta ...
+type Meta struct {
+	Client *cloudapi.Client
+	data   *schema.ResourceData
+
+	// Used to lock some operations
+	sync.Mutex
+}
+
+// New ...
 func New() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
@@ -39,13 +56,17 @@ func New() *schema.Provider {
 }
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
+	fmt.Print("helloworld")
+	// m := &Meta{data: d}
+
+	log.Println("[DEBUG] Initializing danube provider")
 	config := Config{
 		User:   d.Get("user").(string),
 		APIKey: d.Get("api_key").(string),
 		VDC:    d.Get("vdc").(string),
 		URL:    d.Get("url").(string),
 
-		InsecureSkipTLSVerify: d.Get("insecure_skip_tls_verify").(bool),
+		// InsecureSkipTLSVerify: d.Get("insecure_skip_tls_verify").(bool),
 	}
 
 	if user, ok := d.GetOk("user"); ok {

@@ -16,7 +16,7 @@ func TestAccDataSourcemachine(t *testing.T) {
 				Config: testAccDataSourcemachine,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestMatchResourceAttr(
-						"danube_machine.foo", "name", regexp.MustCompile("^ba")),
+						"danube_machine.foo", "hostname", regexp.MustCompile("^ba")),
 				),
 			},
 		},
@@ -25,6 +25,6 @@ func TestAccDataSourcemachine(t *testing.T) {
 
 const testAccDataSourcemachine = `
 resource "danube_machine" "foo" {
-  name = "bar"
+  hostname = "bar"
 }
 `

@@ -11,4 +11,5 @@ require (
 	github.com/hashicorp/errwrap v1.0.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.0.1
 	github.com/joyent/triton-go v1.8.5
+	google.golang.org/genproto v0.0.0-20200711021454-869866162049
 )
