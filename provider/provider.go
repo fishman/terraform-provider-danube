@@ -1,7 +1,6 @@
 package provider
 
 import (
-	"fmt"
 	"log"
 	"sync"
 
@@ -47,6 +46,7 @@ func New() *schema.Provider {
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"danube_machine": dataSourceMachine(),
+			"danube_image":   dataSourceImage(),
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"danube_machine": resourceMachine(),
@@ -56,7 +56,6 @@ func New() *schema.Provider {
 }
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
-	fmt.Print("helloworld")
 	// m := &Meta{data: d}
 
 	log.Println("[DEBUG] Initializing danube provider")

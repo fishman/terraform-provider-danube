@@ -1,9 +1,6 @@
 package provider
 
 import (
-	// "fmt"
-	// "github.com/erigones/godanube/cloudapi"
-
 	"log"
 
 	"github.com/erigones/godanube/cloudapi"
