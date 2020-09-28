@@ -15,6 +15,9 @@ resource "danube_machine" "test" {
   vcpus    = 1
   ram      = 256
 
+  networks = ["lan"]
+  disks    = ["centos-8-kvm"]
+
   tags = [
     "juju-controller-uuid:b45e6a5b-bebb-40cb-8266-666b44bc986c",
     "juju-machine-id:default-machine-11",

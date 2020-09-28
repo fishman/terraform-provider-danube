@@ -1,6 +1,8 @@
 package schemas
 
-import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+import (
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+)
 
 func MachineDataSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
@@ -102,6 +104,22 @@ func MachineSchema() map[string]*schema.Schema {
 			Description: "Machine metadata",
 			Type:        schema.TypeMap,
 			Optional:    true,
+		},
+		"networks": {
+			Description: "Desired network IDs",
+			Type:        schema.TypeList,
+			Optional:    true,
+			Elem: &schema.Schema{
+				Type: schema.TypeString,
+			},
+		},
+		"disks": {
+			Description: "Desired Images",
+			Type:        schema.TypeList,
+			Optional:    true,
+			Elem: &schema.Schema{
+				Type: schema.TypeString,
+			},
 		},
 	}
 }

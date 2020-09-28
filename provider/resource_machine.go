@@ -51,24 +51,24 @@ func resourceMachineCreate(d *schema.ResourceData, meta interface{}) error {
 		vm_definition.Alias = alias.(string)
 	}
 
-	disk_definition := []cloudapi.VmDiskDefinition{
-		{
-			//Size:  10240,
-			//Image: "ubuntu-certified-18.04",
-			Image: "centos-8-kvm",
-		},
+	var disks []cloudapi.VmDiskDefinition
+	for _, disk := range d.Get("disks").([]interface{}) {
+		disks = append(disks,
+			cloudapi.VmDiskDefinition{Image: disk.(string)},
+		)
 	}
 
-	network_definition := []cloudapi.VmNicDefinition{
-		{
-			Net: "lan",
-		},
+	var networks []cloudapi.VmNicDefinition
+	for _, network := range d.Get("networks").([]interface{}) {
+		networks = append(networks,
+			cloudapi.VmNicDefinition{Net: network.(string)},
+		)
 	}
 
 	opts := cloudapi.CreateMachineOpts{
 		Vm:    vm_definition,
-		Disks: disk_definition,
-		Nics:  network_definition,
+		Disks: disks,
+		Nics:  networks,
 	}
 
 	vmInfo, err := client.CreateMachine(opts)
