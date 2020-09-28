@@ -1,7 +1,9 @@
 Terraform Provider Danube
 ==================
 
-This repository is a [Terraform](https://www.terraform.io) provider for Danube Cloud.
+This repository is a [Terraform](https://www.terraform.io) provider for [Danube Cloud](https://danubecloud.com).
+
+Danube Cloud is a SmartOS based DataCenter Operating System.
 
  - A resource, and a data source (`provider/`),
  - Documentation (`website/`),
