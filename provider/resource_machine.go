@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"github.com/fishman/terraform-provider-danube/provider/schemas"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
@@ -11,12 +12,7 @@ func resourceMachine() *schema.Resource {
 		Update: resourceMachineUpdate,
 		Delete: resourceMachineDelete,
 
-		Schema: map[string]*schema.Schema{
-			"name": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-		},
+		Schema: schemas.MachineSchema(),
 	}
 }
 

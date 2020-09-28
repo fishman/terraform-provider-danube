@@ -23,11 +23,6 @@ type Meta struct {
 func New() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
-			"user": {
-				Type:        schema.TypeString,
-				Required:    true,
-				DefaultFunc: schema.EnvDefaultFunc("DANUBE_USER", "admin"),
-			},
 			"api_key": {
 				Type:        schema.TypeString,
 				Required:    true,
@@ -60,16 +55,11 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 
 	log.Println("[DEBUG] Initializing danube provider")
 	config := Config{
-		User:   d.Get("user").(string),
 		APIKey: d.Get("api_key").(string),
 		VDC:    d.Get("vdc").(string),
 		URL:    d.Get("url").(string),
 
 		// InsecureSkipTLSVerify: d.Get("insecure_skip_tls_verify").(bool),
-	}
-
-	if user, ok := d.GetOk("user"); ok {
-		config.User = user.(string)
 	}
 
 	client, err := config.Client()
