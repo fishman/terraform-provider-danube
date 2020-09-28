@@ -10,7 +10,7 @@ import (
 
 func dataSourceImage() *schema.Resource {
 	return &schema.Resource{
-		Read: dataSourceMachineRead,
+		Read: dataSourceImageRead,
 
 		Schema: schemas.ImageSchema(),
 	}

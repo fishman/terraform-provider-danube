@@ -10,13 +10,17 @@ terraform {
 provider "danube" {
 }
 
+data "danube_image" "centos" {
+  name = "centos-8"
+}
+
 resource "danube_machine" "test" {
   hostname = "mytestvm3.lan"
   vcpus    = 1
   ram      = 256
 
   networks = ["lan"]
-  disks    = ["centos-8-kvm"]
+  disks    = [data.danube_image.centos.name]
 
   tags = [
     "juju-controller-uuid:b45e6a5b-bebb-40cb-8266-666b44bc986c",
