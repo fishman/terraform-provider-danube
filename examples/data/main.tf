@@ -17,3 +17,7 @@ data "danube_machine" "test" {
 output "alias" {
   value = data.danube_machine.test.alias
 }
+
+output "tags" {
+  value = data.danube_machine.test.tags
+}
