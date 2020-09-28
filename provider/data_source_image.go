@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/erigones/godanube/cloudapi"
+	"github.com/fishman/terraform-provider-danube/provider/schemas"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
@@ -11,12 +12,7 @@ func dataSourceImage() *schema.Resource {
 	return &schema.Resource{
 		Read: dataSourceMachineRead,
 
-		Schema: map[string]*schema.Schema{
-			"name": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-		},
+		Schema: schemas.ImageSchema(),
 	}
 }
 

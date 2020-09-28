@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/erigones/godanube/cloudapi"
+	"github.com/fishman/terraform-provider-danube/provider/schemas"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
@@ -11,28 +12,7 @@ func dataSourceMachine() *schema.Resource {
 	return &schema.Resource{
 		Read: dataSourceMachineRead,
 
-		Schema: map[string]*schema.Schema{
-			"hostname": {
-				Type:     schema.TypeString,
-				Required: true,
-			},
-			"owner": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"alias": {
-				Type:     schema.TypeString,
-				Optional: true,
-			},
-			"vcpus": {
-				Type:     schema.TypeInt,
-				Optional: true,
-			},
-			"ram": {
-				Type:     schema.TypeInt,
-				Optional: true,
-			},
-		},
+		Schema: schemas.MachineSchema(),
 	}
 }
 
@@ -54,6 +34,10 @@ func dataSourceMachineRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("owner", vmInfo.Owner)
 	d.Set("vcpus", vmInfo.Vcpus)
 	d.Set("ram", vmInfo.Ram)
+	d.Set("disk", vmInfo.Disk)
+	d.Set("locked", vmInfo.Locked)
+	d.Set("ips", vmInfo.Ips)
+	d.Set("tags", vmInfo.Tags)
 
 	return err
 }
